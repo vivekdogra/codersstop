@@ -1,0 +1,31 @@
+.listing-box 
+{
+ padding:10px 10px 20px 10px;
+ margin-bottom:10px;
+ border-bottom:1px dashed #E4E4E7
+}
+
+.listing-box h2
+{ 
+  font-size:1.2em;
+  margin: 0;
+  font-weight:600;
+  line-height:1.15em;
+  letter-spacing:0px;
+  color:#252525;
+  text-transform:capitalize
+}
+
+.post-thumbnail
+{ 
+  margin:0 0 -10px 0;
+  border:1px
+  solid #DDD;
+  padding:4px;
+  float:left
+}
+
+.listing-content{margin-left:130px}.bluelink a:link, .bluelink a:visited, .bluelink a:active{text-decoration:underline!important;color:#0F3B68!important}.bluelink a:hover{text-decoration:none!important;color:#0F3B68!important}.authorlink a:link, .authorlink a:visited, .authorlink a:active{text-decoration:none!important;color:#ABABAB!important}.authorlink a:hover{text-decoration:underline!important;color:#0F3B68!important}#listing-paging{margin:40px
+0}
+
+

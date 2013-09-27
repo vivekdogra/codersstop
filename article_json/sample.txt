@@ -1,0 +1,42 @@
+db.collection.insert(
+	{
+		title: "",
+
+		articleLink: "",
+		
+		articleImage:"",
+
+		date: "",
+
+		author:"",
+
+		tags: [
+			{text:"", tagLink:""},
+			{text:"", tagLink:""}
+		      ],
+
+		content: {
+			    parts: { 
+					part1:"",
+					part2:"",
+					part3:""
+				 },
+
+			    codes: { 
+					code1:"",
+					code2:""
+				},
+
+			    images:{
+
+		       		        image1:"",
+					image2:""
+				}
+			},
+,
+		comments:[
+			   {author:"", date:"", comment:""},
+			   {author:"", date:"", comment:""}
+			 ]
+	}
+);

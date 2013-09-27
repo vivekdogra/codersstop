@@ -1,0 +1,17 @@
+db.collection.insert(
+	{
+		title: "Link To Facebook",
+		articleLink: "https://www.facebook.com",
+		date: "Sept 12, 2013",
+		tags: [
+			{text:"Facebook", link:"https://www.facebook.com"},
+			{text:"Gmail", link:"https://www.gmail.com"}
+		      ],
+		content:"\n\t\t\tpublic class MyFirstApp {\n\t\t\t\t\public static\t\t\tvoid main(String[] args){\n\t\t\t\tSystem.out.println(\"Hello World\");\n\t\t\t\t\t}\n\t\t\t}",
+		image: {path:"images/java-logo.png", link:"https://www.google.com"},
+		comments:[
+			   {author:"vdogra", date:"Sept 13, 2013", comment:"Nice post"},
+			   {author:"ammahajan", date:"Setp 14, 2013", comment: "loved it"}
+			 ]
+	}
+);

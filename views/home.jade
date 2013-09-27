@@ -1,0 +1,161 @@
+!!! 5
+html(lang="en")
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Java Framework Tutorial
+		meta(name='description', content='Collection of Java based frameworks with proper screenshots and code.')
+		// Styling
+		link(href='stylesheets/bootstrap.css', rel='stylesheet')
+		link(href='stylesheets/codersstop-styling.css', rel='stylesheet')
+	body
+		#nav-top.row
+			ul
+				li
+					a(href='/advertise-on-codersstop', rel='nofollow') Advertise
+				li
+					a(href='/write-for-us/', rel='nofollow') Write for us
+				li
+					a(href='/rss-feed/', rel='nofollow') RSS Feed
+				li
+					a(href='/contact-codersstop/', rel='nofollow') Contact Us
+		.row
+			#banner.span12
+				img(src='http://localhost:3000/images/blogger.png', alt='CodersStop')
+		.row
+			#navbar-options
+				ul.navbar-menu.nav-pills
+					li
+						a(href='Home') Home
+					li.dropdown
+						a.dropdown-toggle(data-hover='dropdown', href='#') Java
+						ul.dropdown-menu.navbar-dropdown-menu
+							h1 Java
+							a(href='#')
+								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 1. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 2. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 3. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 4. JVC
+					li.dropdown
+						a.dropdown-toggle(data-hover='dropdown', href='#') Spring
+						ul.dropdown-menu.navbar-dropdown-menu
+							h1 Spring
+							a(href='#')
+								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 1. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 2. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 3. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 4. JVC
+					li.dropdown
+						a.dropdown-toggle(data-hover='dropdown', href='#') Hibernate
+						ul.dropdown-menu.navbar-dropdown-menu
+							h1 Hibernate
+							a(href='#')
+								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 1. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 2. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 3. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 4. JVC
+					li.dropdown
+						a.dropdown-toggle(data-hover='dropdown', href='#') JS
+						ul.dropdown-menu.navbar-dropdown-menu
+							h1 JS
+							a(href='#')
+								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 1. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 2. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 3. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 4. JVC
+					li.dropdown
+						a.dropdown-toggle(data-hover='dropdown', href='#') Node.js
+						ul.dropdown-menu.navbar-dropdown-menu
+							h1 Node.js
+							a(href='#')
+								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 1. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 2. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 3. JVC
+							li(data-filter-java-option='JVC')
+								a(data-toggle='modal', href='#') 4. JVC
+				#search-form
+					form.form-search
+						input.input-medium.search-query(type='text')
+						button.btn(type='submit') Search
+		
+		script(type='text/javascript', src='javascripts/jquery.js')
+		script(type='text/javascript', src='javascripts/bootstrap-dropdown.js')
+		script(type='text/javascript', src='javascripts/bootstrap-dropdown-hover.js')
+		script(type='text/javascript').
+			$(document).ready(function () {
+				$('.dropdown-toggle').dropdown();
+			});
+		.row
+			#articles-container.span10
+				each article in documents	
+					.article-box
+						.post-thumbnail
+							a(href=article.articleLink, rel='bookmark', title = article.title)
+								img(width='100', height='100', src=article.content.images.tagImage, alt='java_logo_100')
+						.article-intro
+							h2#article-1
+								a(href=article.articleLink, rel='bookmark', title=article.title) #{article.title}
+							.article-meta-data
+								p #{article.date} | 
+									span.article-tag
+										each tag, i in article.tags
+											if i < article.tags.length - 1
+												a(href=tag.link) #{tag.text}, 
+											else
+												a(href=tag.link) #{tag.text}
+							p #{article.content.texts.text1}
+							a(href=article.articleLink) Read More &raquo;
+		.row
+			#page-bar.pagination
+				ul
+					li.prev.disabled
+						a Page 1 of 10
+					li.active
+						a 1
+					li
+						a(href='#') 3
+					li
+						a(href='#') 4
+					li
+						a(href='#') 5
+					li.next
+						a(href='#') Next &rarr;
+		#footer-container
+			#footer-row.row
+				.span3
+					h3 Fontend Development:
+					p HTML4.0, XHTML1.0, CSS2.1, HTML5, CSS3, JavaScript
+				.span3
+					h3 Backend Developemt:
+					p PHP, Ruby, Python, Java, ASP.NET, SCALA
+				.span3
+					h3 Database Management:
+					p SQL, MySQL POstgreSQL, NoSQL, MongoDB
+				.span3
+					h3 APIs, Tools and Tips:
+					p Google Plus API, Twitter Bootstrap, JSON, Firebug, WebPNG
+

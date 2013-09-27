@@ -1,0 +1,53 @@
+db.collection.insert(
+	{
+		articleId :"#article1",
+		
+		title: "How To take Input From User In Java",
+
+		articleLink: "/java/how-to-take-input-from-user-in-java",
+		
+		articleImage:"/images/java-logo.png",
+
+		date: "September 20th, 2013",
+
+		author:"vdogra",
+
+		tags: [
+			{text:"Java", tagLink:"/tag/java"},
+			{text:"IO", tagLink:"/tag/io"}
+		      ],
+
+		content: {
+			    texts: { 
+					text1:"In this article, we take user input from the command line. To achieve it, we will use\
+						 java.util.Scanner class.",
+					text2:"",
+					text3:""
+				 },
+
+			    codes: { 
+					code1:"package com.codersstop;\n\n\
+					import java.util.Scanner;\n\n\
+					public class JavaUserInput {\n\n\
+					\tpublic static void main(String[] args) {\n\n\
+					\t\tScanner scanner = new Scanner(System.in);\n\n\
+					\t\tSystem.out.println(\"Welcome to Codersstop. Please enter your name: \");\n\
+					\t\tString userName = scanner.nextLine();\n\n\
+					\t\tSystem.out.println(\"Bonjour! \" + userName);\n\
+					\t}\n\
+					}",
+					code2:""
+				},
+
+			    images:{
+					tagImage:"/images/javascript-logo.png",
+		       		        image1:"",
+					image2:""
+				}
+			},
+		comments:{
+			  	commentId1:  {author:"", date:"", text:"", children : {}},
+			   	commentId2:  {author:"", date:"", text:"", children : {}}
+			 }
+	}
+);
