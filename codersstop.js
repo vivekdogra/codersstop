@@ -44,6 +44,7 @@ db.open(function(err){
 app.get('/',cdstproutes.getCollections);
 app.get('/page/:page_no',cdstproutes.getCollections);
 app.get('/java/:article', cdstproutes.getArticle);
+app.post('/addComment', cdstproutes.addComment);
 /*db.open(function(err){
     if(err) throw err;
 

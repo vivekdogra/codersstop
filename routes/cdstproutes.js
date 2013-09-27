@@ -25,7 +25,7 @@ module.exports = {
 					
 			},
 
-	    getArticle:  function(req, res) {
+	getArticle:     function(req, res) {
 				var file = __dirname + '/articlePaths.json';
                                 fs.readFile(file, 'utf8', function (err, data) {
                                         if(err){
@@ -45,12 +45,24 @@ module.exports = {
 						});
 					}
 				});
-			}
-			/*	collectionlib.getArticle({}, function(err, article) {
-					
-					if(err) res.send(err);
-					else
-						res.render('../views/java-user-input', {document:article});
+			},
+	
+	addComment: function(req, res) {
+				console.log("Add Comment:");
+				var store = ' ';
+		
+				res.writeHead(200, {"Content-Type": "text/json"});
+				req.on('data', function(data) {
+					store += data;
+				});
 
-				});*/								
+				req.on('end', function() {
+					console.log(store);
+					res.end(store);
+				});
+				//console.log(req.params.comment);
+			//	res.send("../views/home.jade"); 
+			}
+
+
 }

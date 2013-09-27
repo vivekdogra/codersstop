@@ -111,12 +111,46 @@ html(lang="en")
 				$('.dropdown-toggle').dropdown();
 			});
 			function insertCommentBlock(Id) {
-					var commentBlock = $('#commentBlock');
-					var pComment = '#' + Id.parentNode.id;
-					var parentComment = $(pComment);
-					parentComment.append(commentBlock);
+				var commentBlock = $('#commentBlock');
+				var pComment = '#' + Id.parentNode.id;
+				var parentComment = $(pComment);
+				parentComment.append(commentBlock);
 			}
-		
+			function putCommentBlockBack(){
+				var commentBlock = $('#commentBlock');
+				var parentComment= $('#commentContainer');
+				parentComment.append(commentBlock);					
+			}
+			function insertNewComment(userName, userEmail, userMessage) {
+				var username = userName.value;
+				var useremail = userEmail.value;
+				var usermessage = userMessage.value;
+				var xmlhttp;
+				var message  = "Welcome " + username + " your emailID is " + useremail + " your message " + usermessage;	
+				if (window.XMLHttpRequest)
+				{// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{// code for IE6, IE5
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				
+				xmlhttp.onreadystatechange=function() {
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						alert(xmlhttp.responseText);
+					}
+				}
+				
+				var data = JSON.stringify({"userName" : username, "userEmail" : useremail, "userMessage" : usermessage});
+				var url = "/addComment"; // + "name=" + username + "&email=" + useremail + "&message=" + usermessage;
+				xmlhttp.open("POST",url,true);
+				xmlhttp.setRequestHeader("Content-Type", "text/json");
+				xmlhttp.send(data);				
+				
+				return false;
+			}
 		.row
 			#article-container.span10
 				.article-content
@@ -136,7 +170,7 @@ html(lang="en")
 					pre.prettyprint(style='font-size: 15px; font-weight: 600;').
 						#{article.content.codes.code1}
             
-				.comment(style="width:760px;margin-top:20px;")
+				#commentContainer.comment(style="width:760px;margin-top:20px;")
 					h2 Comments:-
 					.accordion-group(style='width: 760px; margin: 30px 0px 5px 5px; border-width: 3px;')
 						.accordion-heading
@@ -177,15 +211,15 @@ html(lang="en")
 							| Comment:
 						| (Your email address will not be published.)
 					small
-						a#cancel-comment-reply-link.pull-right(style='color:red;', href='/java/how-to-take-input-from-user-in-java', rel='nofollow') Cancel Reply
+						a#cancel-comment-reply-link.pull-right(onclick='putCommentBlockBack()' style='color:red;' href='javascript:void(0)' rel='nofollow') Cancel Reply
 							//.cancel-reply(style='margin-left:500px;padding: 10px;') Cancel Reply
-					form#commentForm
+					form#commentForm(onsubmit="return insertNewComment(userName, userEmail, userMessage)")
 						.controls.controls-row
-							input#name.span3(name='name', type='text', placeholder='Name', required='required')
+							input#userName.span3(name='name', type='text', placeholder='Name', required='required')
 						div
-							input#email.span3(name='email', type='email', placeholder='Email address', required='required')
+							input#userEmail.span3(name='email', type='email', placeholder='Email address', required='required')
 						.controls
-							textarea#message(name='message', placeholder='Your comment', rows='10' style='width:720px', required='required')
+							textarea#userMessage(name='message', placeholder='Your comment', rows='10' style='width:720px', required='required')
 						.controls
 							button#contact-submit.btn.btn-primary.input-medium(type='submit') Comment								
 		#footer-container
