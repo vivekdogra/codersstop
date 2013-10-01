@@ -156,7 +156,10 @@
 #cancel-comment-reply-link {
 	display:none;
 }
-
+#commentBox {
+	margin: 30px 0px 5px 5px; 
+	border-width: 2px;
+}
 .commentText #cancel-comment-reply-link{
 	display:block;
 }

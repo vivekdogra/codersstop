@@ -1,6 +1,5 @@
 var collectionlib = require('../lib/collectionlib')
- 	, db = require('../lib/db')
-	, ejs= require('../node_modules/ejs')
+	, getCommentUpdateQuery = require('./getCommentUpdateQuery')
 	, fs = require('fs');
 	
 // redirects to correct view
@@ -48,20 +47,40 @@ module.exports = {
 			},
 	
 	addComment: function(req, res) {
-				console.log("Add Comment:");
 				var store = ' ';
 		
 				res.writeHead(200, {"Content-Type": "text/json"});
 				req.on('data', function(data) {
 					store += data;
 				});
+	
+				
+			        req.on('end', function() {
+					var info = JSON.parse(store);
+					if (info.parentID == 'article-container') {
+						getCommentUpdateQuery.getQuery(info, function(searchQuery,
+											newComment) {
+									collectionlib.updateArticle(searchQuery, 
+									{ $push:newComment },  function(err, art) {
+                                                        			if(err) res.send(err);
+                                                  		}); 
+						});
 
-				req.on('end', function() {
-					console.log(store);
+
+					}
+					else {
+						var newComment = {"comments.$.children":{"author":info.userName, "date":"29th September, 2013", "text":info.userMessage}};						  
+						var searchQuery= {articleId:info.articleID, "comments.id":info.parentID};
+					
+						collectionlib.updateArticle(searchQuery, { $push:newComment },  function(err, art) {
+							if(err) res.send(err);
+							else{
+							
+							}
+						});
+					}
 					res.end(store);
 				});
-				//console.log(req.params.comment);
-			//	res.send("../views/home.jade"); 
 			}
 
 

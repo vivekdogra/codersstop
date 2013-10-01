@@ -45,9 +45,6 @@ db.collection.insert(
 					image2:""
 				}
 			},
-		comments:{
-			  	commentId1:  {author:"", date:"", text:"", children : {}},
-			   	commentId2:  {author:"", date:"", text:"", children : {}}
-			 }
+		comments:[]
 	}
 );

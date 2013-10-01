@@ -26,7 +26,7 @@ html(lang="en")
 			#navbar-options
 				ul.navbar-menu.nav-pills
 					li
-						a(href='Home') Home
+						a(href='http://localhost:3000/') Home
 					li.dropdown
 						a.dropdown-toggle(data-hover='dropdown', href='#') Java
 						ul.dropdown-menu.navbar-dropdown-menu
@@ -105,7 +105,7 @@ html(lang="en")
 		script(type='text/javascript', src='http://localhost:3000/javascripts/jquery.js')
 		script(type='text/javascript', src='http://localhost:3000/javascripts/bootstrap-dropdown.js')
 		script(type='text/javascript', src='http://localhost:3000/javascripts/bootstrap-dropdown-hover.js')
-		script(type='text/javascript', src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js")
+		script(type='text/javascript', src="http://localhost:3000/javascripts/run_prettify.js")
 		script(type='text/javascript').
 			$(document).ready(function () {
 				$('.dropdown-toggle').dropdown();
@@ -121,10 +121,12 @@ html(lang="en")
 				var parentComment= $('#commentContainer');
 				parentComment.append(commentBlock);					
 			}
-			function insertNewComment(userName, userEmail, userMessage) {
+			function insertNewComment(userName, userEmail, userMessage, Id) {
+				var articleID = document.getElementById("articleID").innerHTML;
 				var username = userName.value;
 				var useremail = userEmail.value;
 				var usermessage = userMessage.value;
+				var parentCommentId = Id.parentNode.id;
 				var xmlhttp;
 				var message  = "Welcome " + username + " your emailID is " + useremail + " your message " + usermessage;	
 				if (window.XMLHttpRequest)
@@ -138,13 +140,14 @@ html(lang="en")
 				
 				xmlhttp.onreadystatechange=function() {
 					if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
+					{       putCommentBlockBack();
 						alert(xmlhttp.responseText);
+						location.reload()
 					}
 				}
 				
-				var data = JSON.stringify({"userName" : username, "userEmail" : useremail, "userMessage" : usermessage});
-				var url = "/addComment"; // + "name=" + username + "&email=" + useremail + "&message=" + usermessage;
+				var data = JSON.stringify({"articleID": articleID, "parentID" : parentCommentId, "userName" : username, "userEmail" : useremail, "userMessage" : usermessage});
+				var url = "/addComment";
 				xmlhttp.open("POST",url,true);
 				xmlhttp.setRequestHeader("Content-Type", "text/json");
 				xmlhttp.send(data);				
@@ -153,6 +156,8 @@ html(lang="en")
 			}
 		.row
 			#article-container.span10
+				p#articleID(style="display:none")
+					| #{article.articleId}
 				.article-content
 					h1#article-1
 						| #{article.title}
@@ -162,9 +167,9 @@ html(lang="en")
 							span.article-tag
 								each tag, i in article.tags
 									if i < article.tags.length - 1
-										a(href=tag.link) #{tag.text}, 
+										a(href=tag.link,cursor:pointer) #{tag.text}, 
 									else
-										a(href=tag.link) #{tag.text}
+										a(href=tag.link,cursor:pointer) #{tag.text}
 					p
 						| #{article.content.texts.text1}
 					pre.prettyprint(style='font-size: 15px; font-weight: 600;').
@@ -172,48 +177,34 @@ html(lang="en")
             
 				#commentContainer.comment(style="width:760px;margin-top:20px;")
 					h2 Comments:-
-					.accordion-group(style='width: 760px; margin: 30px 0px 5px 5px; border-width: 3px;')
-						.accordion-heading
-							p.accordion-toggle(style='padding-bottom: 0px; font-weight: bold;')
-								| Vivek
-								span.pull-right  September 12, 2013 at 11:34pm
-						#prerequisites
-							.accordion-inner
-								#comment0.commentText
-									p#form-prerequisites
-										| Facebook is a social networking site where you can connect with any other person in th
-										| Connect with friends and the world around you on Facebook. You can also create your profile
-										| facebook free of cost. Facebook is an online social networking service. Its name stems from 
-										| colloquial name for the book given to students at the start of the academic year by some AmericanFacebook is a social networking site where you can connect with any other person in the worl
-										| Connect with friends and the world around you on Facebook. You can also create your profile
-										| facebook free of cost. Facebook is an online social networking service. Its name stems from
-										| colloquial name for the book given to students at the start of the academic year by some AmericanFacebook is a social networking site where you can connect with any other person in the wo
-										| Connect with friends and the world around you on Facebook. You can also create your
-										| facebook free of cost. Facebook is an online social networking service. Its name stems from
-										| colloquial name for the book given to students at the start of the academic year by some AmericanFacebook is a social networking site where you can connect with any other person in the
-										| Connect with friends and the world around you on Facebook. You can also create your profile on
-									a.pull-right(onclick='insertCommentBlock(this)' type="submit" style='cursor:pointer') Reply
-								.accordion-group(style='margin: 30px 0px 5px 5px; border-width: 3px;')
-									.accordion-heading
-										p.accordion-toggle(style='padding-bottom: 0px; font-weight: bold;')
-											| Vivek
-											span.pull-right  September 12, 2013 at 11:34pm
-										#prerequisites.collapse.in
-											.accordion-inner
-												#comment0-0.commentText
-													p
-														| Facebook is a social networking site where you can connect with any other person in
-													a.pull-right(onclick='insertCommentBlock(this)' style='margin-bottom:5px' type="submit" style='cursor:pointer') Reply
-				
+					each comment in article.comments
+						#commentBox.accordion-group.collapse.in
+							.accordion-heading
+								p.accordion-toggle(style='font-weight: bold;')
+									| #{comment.author}
+									span.pull-right  #{comment.date}
+							.accordion-inner.commentText(id=comment.id)
+								p#form-prerequisites
+									| #{comment.text}
+								each child in comment.children
+									.accordion-group.collapse.in(style='margin: 30px 0px 5px 5px; border-width: 3px;')
+										.accordion-heading
+											p.accordion-toggle(style='padding-bottom: 0px; font-weight: bold;')
+												| #{child.author}
+												span.pull-right  #{child.date}
+										.accordion-inner.commentText
+											p#form-prerequisites
+												| #{child.text}
+								button#contact-submit.btn.pull-right(type='submit', onclick='insertCommentBlock(this)',  style='margin: 0px 5px 5px 5px;') Reply
 				#commentBlock.comment-form
 					p
 						strong
 							| Comment:
-						| (Your email address will not be published.)
+						|   (Your email address will not be published.)
 					small
-						a#cancel-comment-reply-link.pull-right(onclick='putCommentBlockBack()' style='color:red;' href='javascript:void(0)' rel='nofollow') Cancel Reply
+						a#cancel-comment-reply-link.pull-right(onclick='putCommentBlockBack()' style='color:red;' href='javascript:void(0)' rel='nofollow') Cancel
 							//.cancel-reply(style='margin-left:500px;padding: 10px;') Cancel Reply
-					form#commentForm(onsubmit="return insertNewComment(userName, userEmail, userMessage)")
+					form#commentForm(onsubmit="return insertNewComment(userName, userEmail, userMessage, this.parentNode)")
 						.controls.controls-row
 							input#userName.span3(name='name', type='text', placeholder='Name', required='required')
 						div
