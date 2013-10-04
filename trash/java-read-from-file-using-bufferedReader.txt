@@ -1,0 +1,74 @@
+db.collection.insert(
+	{
+		articleId :"#article2",
+		
+		title: "How To Read From a Text File In Java",
+
+		articleLink: "/java/how-to-read-from-a-text-file-in-java",
+		
+		articleImage:"/images/java-logo.png",
+
+		date: "October 2nd, 2013",
+
+		author:"vdogra",
+
+		tags: [
+			{text:"Java", tagLink:"/tag/java"},
+			{text:"IO", tagLink:"/tag/io"},
+			{text:"File", tagLink:"/tag/file"}
+		      ],
+
+		content: {
+			    texts: { 
+					text1:"In this program, we will learn how to read input from a text file using \
+						#BufferedReader#.",
+					text2:"#FileReader# class is used to read characters from a file. The #BufferedReader# \ 
+						class is wrapped around FileReader and reads text from a character-input stream \
+						and stores it in a buffer. This helps in efficient \
+						reading from file.",
+					text3:"You need to give the absolute file path as #filePath#.",
+					text4:"#bufferedReader.close()# closes the stream and releases any resources associated \						     with it."	
+				 },
+
+			    codes: { 
+					code1:"package com.codersstop;\n\n\
+					import java.io.BufferedReader;\n\
+					import java.io.FileNotFoundException;\n\
+					import java.io.FileReader;\n\
+					import java.io.IOException;\n\
+					public class ReadTextFile {\n\
+					\tpublic static void main(String[] args) throws IOException {\n\n\
+					\t\tString filePath = \"inputFile.txt\";\n\n\
+					\t\ttry {\n\n\
+					\t\t\tFileReader fileReader = new FileReader(filepath);\n\
+					\t\t\tBufferedReader bufferedReader = new BufferedReader(fileReader);\n\n\
+					\t\t\ttry {\n\n\
+					\t\t\t\tString line = bufferedReader.readLine();\n\n\
+					\t\t\t\twhile(line != null) {\n\n\
+					\t\t\t\t\tSystem.out.println(line);\n\
+					\t\t\t\t\tline = bufferedReader.readLine();\n\n\
+					\t\t\t\t}\n\n\
+					\t\t\t} finally {\n\n\
+					\t\t\t\tbufferedReader.close();\n\n\
+					\t\t\t}\n\n\
+					\t\t} catch (FileNotFoundException e) {\n\n\
+					\t\t\te.printStackTrace();\n\n\
+					\t\t}\n\n\
+					\t}\n\n\
+					}\n"
+					
+					, code2:""
+				},
+
+			    images:{
+					tagImage:"/images/javascript-logo.png",
+		       		        image1:"",
+					image2:""
+				}
+			},
+		comments:[],
+		references:[
+				{text:"", refLink:""}
+			]
+	}
+);
