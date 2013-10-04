@@ -32,7 +32,7 @@ html(lang="en")
 						ul.dropdown-menu.navbar-dropdown-menu
 							h1 Java
 							a(href='#')
-								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+								img(src='http://localhost:3000/images/java-logo.jpg', alt='java_logo_100',height='150', width='150', style='border:1px solid #DDD; padding:5px 2px 10px 2px')
 							li(data-filter-java-option='JVC')
 								a(data-toggle='modal', href='#') 1. JVC
 							li(data-filter-java-option='JVC')
@@ -46,7 +46,7 @@ html(lang="en")
 						ul.dropdown-menu.navbar-dropdown-menu
 							h1 Spring
 							a(href='#')
-								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+								img(src='http://localhost:3000/images/springframework-logo.png', alt='java_logo_100', height='150', width='150', style='border:1px solid #DDD; padding:5px 2px 10px 2px')
 							li(data-filter-java-option='JVC')
 								a(data-toggle='modal', href='#') 1. JVC
 							li(data-filter-java-option='JVC')
@@ -60,7 +60,7 @@ html(lang="en")
 						ul.dropdown-menu.navbar-dropdown-menu
 							h1 Hibernate
 							a(href='#')
-								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+								img(src='http://localhost:3000/images/hibernate-logo.jpg', alt='java_logo_100', height='150', width='150', style='border:1px solid #DDD; padding:5px 2px 10px 2px')
 							li(data-filter-java-option='JVC')
 								a(data-toggle='modal', href='#') 1. JVC
 							li(data-filter-java-option='JVC')
@@ -74,7 +74,7 @@ html(lang="en")
 						ul.dropdown-menu.navbar-dropdown-menu
 							h1 JS
 							a(href='#')
-								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+								img(src='http://localhost:3000/images/javascript-logo.jpg', alt='java_logo_100', height='150', width='150', style='border:1px solid #DDD;')
 							li(data-filter-java-option='JVC')
 								a(data-toggle='modal', href='#') 1. JVC
 							li(data-filter-java-option='JVC')
@@ -88,7 +88,7 @@ html(lang="en")
 						ul.dropdown-menu.navbar-dropdown-menu
 							h1 Node.js
 							a(href='#')
-								img(src='http://localhost:3000/images/javascript-logo.png', alt='java_logo_100')
+								img(src='http://localhost:3000/images/nodejs-logo.jpg', alt='java_logo_100', height='150', width='150', style='border:1px solid #DDD;')
 							li(data-filter-java-option='JVC')
 								a(data-toggle='modal', href='#') 1. JVC
 							li(data-filter-java-option='JVC')
@@ -105,6 +105,16 @@ html(lang="en")
 		script(type='text/javascript', src='javascripts/jquery.js')
 		script(type='text/javascript', src='javascripts/bootstrap-dropdown.js')
 		script(type='text/javascript', src='javascripts/bootstrap-dropdown-hover.js')
+		script(type='text/javascript').
+			$(function(){
+				var text = '{(mb)\\b[^}]*}(.*?){/\\1}';
+				$('p').html( function (i, html) {
+					var regexp, replacement;
+					regexp = RegExp(text, 'gi');
+					replacement = '<b>$2</b>';
+					return html.replace(regexp, replacement);
+				});
+			});
 		script(type='text/javascript').
 			$(document).ready(function () {
 				$('.dropdown-toggle').dropdown();
@@ -124,10 +134,10 @@ html(lang="en")
 									span.article-tag
 										each tag, i in article.tags
 											if i < article.tags.length - 1
-												a(href=tag.link) #{tag.text}, 
+												a(href=tag.tagLink) #{tag.text}, 
 											else
-												a(href=tag.link) #{tag.text}
-							p #{article.content.texts.text1}
+												a(href=tag.tagLink) #{tag.text}
+							p #{article.content.texts.text1}...
 							a(href=article.articleLink) Read More &raquo;
 		.row
 			#page-bar.pagination

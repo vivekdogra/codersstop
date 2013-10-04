@@ -6,7 +6,7 @@ db.collection.insert(
 
 		articleLink: "/java/how-to-take-input-from-user-in-java",
 		
-		articleImage:"/images/java-logo.png",
+		articleImage:"/images/java-logo.jpg",
 
 		date: "September 20th, 2013",
 
@@ -40,7 +40,7 @@ db.collection.insert(
 				},
 
 			    images:{
-					tagImage:"/images/javascript-logo.png",
+					tagImage:"/images/java-logo.jpg",
 		       		        image1:"",
 					image2:""
 				}

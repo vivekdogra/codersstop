@@ -45,9 +45,3 @@ app.get('/',cdstproutes.getCollections);
 app.get('/page/:page_no',cdstproutes.getCollections);
 app.get('/java/:article', cdstproutes.getArticle);
 app.post('/addComment', cdstproutes.addComment);
-/*db.open(function(err){
-    if(err) throw err;
-
-    app.listen(3000);
-});*/
-//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

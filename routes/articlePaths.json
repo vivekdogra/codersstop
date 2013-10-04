@@ -1,3 +1,4 @@
 {
-	"how-to-take-input-from-user-in-java" : {"jade" : "java-user-input", "articleId": "#article1"}
+	"how-to-take-input-from-user-in-java"  : {"jade" : "java-user-input", "articleId": "#article1"},
+	"how-to-read-from-a-text-file-in-java" : {"jade" : "java-read-from-file-using-bufferedReader", "articleId": "#article2"}
 }

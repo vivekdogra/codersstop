@@ -109,12 +109,13 @@ html(lang="en")
 		script(type='text/javascript').
 			$(function(){
 				var text = '{(mb)\\b[^}]*}(.*?){/\\1}';
-				$('p').html( function (i, html) {
-					var regexp, replacement;
-					regexp = RegExp(text, 'gi');
-					replacement = '<b>$2</b>';
-					return html.replace(regexp, replacement);
-				});
+					$('p').html( function (i, html) {
+						var regexp, replacement;
+						regexp = RegExp(text , 'gi');
+						replacement = '<b>$2</b>';
+						
+						return html.replace(regexp, replacement);
+					});
 			});
 		script(type='text/javascript').
 			$(document).ready(function () {
@@ -180,13 +181,16 @@ html(lang="en")
 										a(href=tag.tagLink) #{tag.text}, 
 									else
 										a(href=tag.tagLink) #{tag.text}
-					p
+					p 
 						| #{article.content.texts.text1}
 					pre.codeBlock.prettyprint.
 						#{article.content.codes.code1}
-            
+					p
+						| #{article.content.texts.text2}
+					p
+						| #{article.content.texts.text3}
 				#commentContainer.comment(style="width:760px;margin-top:20px;")
-					h2 Comments:-
+					h3 Comments:-
 					each comment in article.comments
 						#commentBox.accordion-group.collapse.in
 							.accordion-heading
