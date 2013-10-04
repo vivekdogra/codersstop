@@ -1,0 +1,75 @@
+db.collection.insert(
+	{
+		articleId :"#article2",
+		
+		title: "How To Read From a Text File In Java",
+
+		articleLink: "/java/how-to-read-from-a-text-file-in-java",
+		
+		articleImage:"/images/java-logo.jpg",
+
+		date: "October 2nd, 2013",
+
+		author:"vdogra",
+
+		tags: [
+			{text:"Java", tagLink:"/tag/java"},
+			{text:"IO", tagLink:"/tag/io"},
+			{text:"File", tagLink:"/tag/file"}
+		      ],
+
+		content: {
+			    texts: { 
+					text1:"In this program, we will learn how to read input from a text file using \
+						{mb}BufferedReader{/mb}.",
+					text2:"{mb}FileReader{/mb} class is used to read characters from a file. The {mb}BufferedReader{/mb}\
+					      class is wrapped around FileReader class and reads text from a character-input stream \
+					      (FileReader in this case) and stores it in a buffer. This helps in efficient reading \
+					      from the file.",
+					text3:"Please note that you need to give the absolute file path as {mb}filePath{/mb}. \
+	                         	     {mb}bufferedReader.close(){/mb} closes the stream and releases any resources associated \						    with it. {mb}FileNotFoundException{/mb} will be thrown if the specified file doesn't \
+						exist at the file path given or is inaccessible (read-only file etc)."	
+				 },
+
+			    codes: { 
+					code1:"package com.codersstop;\n\n\
+					import java.io.BufferedReader;\n\
+					import java.io.FileNotFoundException;\n\
+					import java.io.FileReader;\n\
+					import java.io.IOException;\n\n\
+					public class ReadTextFile {\n\n\
+					\tpublic static void main(String[] args) throws IOException {\n\n\
+					\t\tString filePath = \"inputFile.txt\";\n\
+					\t\ttry {\n\n\
+					\t\t\tFileReader fileReader = new FileReader(filepath);\n\
+					\t\t\tBufferedReader bufferedReader = new BufferedReader(fileReader);\n\n\
+					\t\t\ttry {\n\n\
+					\t\t\t\tString line = bufferedReader.readLine();\n\
+					\t\t\t\twhile(line != null) {\n\n\
+					\t\t\t\t\tSystem.out.println(line);\n\
+					\t\t\t\t\tline = bufferedReader.readLine();\n\
+					\t\t\t\t}\n\
+					\t\t\t} finally {\n\n\
+					\t\t\t\tbufferedReader.close();\n\
+					\t\t\t}\n\
+					\t\t} catch (FileNotFoundException e) {\n\n\
+					\t\t\te.printStackTrace();\n\
+					\t\t}\n\
+					\t}\n\
+					}\n"
+					
+					, code2:""
+				},
+
+			    images:{
+					tagImage:"/images/java-logo.jpg",
+		       		        image1:"",
+					image2:""
+				}
+			},
+		comments:[],
+		references:[
+				{text:"", refLink:""}
+			]
+	}
+);
