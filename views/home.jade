@@ -6,8 +6,8 @@ html(lang="en")
 		title Java Framework Tutorial
 		meta(name='description', content='Collection of Java based frameworks with proper screenshots and code.')
 		// Styling
-		link(href='stylesheets/bootstrap.css', rel='stylesheet')
-		link(href='stylesheets/codersstop-styling.css', rel='stylesheet')
+		link(href='http://localhost:3000/stylesheets/bootstrap.css', rel='stylesheet')
+		link(href='http://localhost:3000/stylesheets/codersstop-styling.css', rel='stylesheet')
 	body
 		#nav-top.row
 			ul
@@ -140,20 +140,22 @@ html(lang="en")
 							p #{article.content.texts.text1}...
 							a(href=article.articleLink) Read More &raquo;
 		.row
-			#page-bar.pagination
+			#page-bar.pagination(style="margin: 20px 0 0 160px")
 				ul
 					li.prev.disabled
 						a Page 1 of 10
 					li.active
 						a 1
 					li
-						a(href='#') 3
+						a(href='/page/2/') 2
 					li
-						a(href='#') 4
+						a(href='/page/3/') 3
 					li
-						a(href='#') 5
+						a(href='/page/4/') 4
+					li
+						a(href='/page/5/') 5
 					li.next
-						a(href='#') Next &rarr;
+						a(href='/page/6/') Next &rarr;
 		#footer-container
 			#footer-row.row
 				.span3
