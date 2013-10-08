@@ -1,0 +1,104 @@
+db.collection.insert(
+	{
+		articleId :"#article3",
+		
+		title: "Getting started with WebDriver in Selenium",
+
+		articleLink: "/automation/getting-started-with-webdriver-in-selenium",
+		
+		articleImage:"/images/selenium-logo.png",
+
+		date: "October 8th, 2013",
+
+		author:"amahajan",
+
+		tags: [
+			{text:"Automation", tagLink:"/tag/automation"},
+			{text:"Selenium", tagLink:"/tag/selenium"},
+		      ],
+
+		content: {
+			    texts: { 
+					text1:"Installation required:\n\
+						\tIDE(eg. Eclipse)\n\
+						\tSelenium(selenium-java-2.35.0)\n\n\
+						Unpack selenium-jar into a directory($WEBDRIVER_HOME)\n\
+						In your IDE, create a new Java Project.\n\
+						In the following path: Project/Properties/Java Build Path, select Libraries -> Add External JARs \
+						and add all the JAR files from $WEBDRIVER_HOME. This is required to build the classpath that tells \
+						the Java compiler where to look for user-defined classes and packages.\n\
+						Create a package in the src dir. Inside that package, create a new class.\n\n\
+						Now we are good to get started..",
+					text2:""					
+				 },
+
+			    codes: { 
+					code1:"// Create a new instance of Firefox Driver\n\
+						   WebDriver driver = new FirefoxDriver();\n\n\
+						   // launch facebook.com on browser\n\
+						   driver.get(\"https://www.facebook.com\");\n\n\
+						   // find the email and password text fields and login button on the facebook login page\n\
+						   WebElement emailTextBox = driver.findElement(By.id(\"email\"));\n\
+						   WebElement passwordTextBox = driver.findElement(By.id(\"pass\"));\n\
+						   WebElement loginButton = driver.findElement(By.id(\"loginbutton\"));\n\n\
+						   // enter email-id and password\n\
+						   emailTextBox.sendKeys(emailId);\n\
+						   passwordTextBox.sendKeys(password);\n\n\
+						   // click on login button\n\
+					       loginButton.click();",					
+					code2:"// find the status box and post button on facebook home page\n\
+						   WebElement statusBox = driver.findElement(By.xpath(\"//textarea\"));\n\
+					       WebElement postButton = driver.findElement(By.xpath(\"//button[@type='submit']\"));\n\n\
+						   // enter some text and post it\n\
+						   statusBox.sendKeys(\"Automation is fun!!\");\n\
+						   postButton.click();\n\
+						   Thread.sleep(5000);\n\n\
+						   // close the driver instance\n\
+						   driver.close();",					
+					code3:"package com.automation.selenium;\n\n\
+						import org.openqa.selenium.By;\n\
+						import org.openqa.selenium.WebDriver;\n\
+						import org.openqa.selenium.WebElement;\n\
+						import org.openqa.selenium.firefox.FirefoxDriver;\n\n\
+						public class MyFirstAutomation {\n\n\
+						\tpublic static void main(String[] args) throws InterruptedException {\n\n\		
+						\t\t// Create a new instance of Firefox Driver\n\
+						\t\tWebDriver driver = new FirefoxDriver();\n\n\
+						\t\t// launch facebook.com on browser\n
+						\t\tdriver.get(\"https://www.facebook.com\");\n\n\
+						\t\t// find the email and password text fields and login button on the facebook login page\n\
+						\t\tWebElement emailTextBox = driver.findElement(By.id(\"email\"));\n\
+						\t\tWebElement passwordTextBox = driver.findElement(By.id(\"pass\"));\n\
+						\t\tWebElement loginButton = driver.findElement(By.id(\"loginbutton\"));\n\n\
+						\t\t// enter email-id and password\n\
+						\t\temailTextBox.sendKeys(emailId);\n\
+						\t\tpasswordTextBox.sendKeys(password);\n\n\
+						\t\t// click on login button\n\
+					    \t\tloginButton.click();\n\n\n\
+						\t\t// find the status box and post button on facebook home page\n\
+						\t\tWebElement statusBox = driver.findElement(By.xpath(\"//textarea\"));\n\
+					    \t\tWebElement postButton = driver.findElement(By.xpath(\"//button[@type='submit']\"));\n\n\
+						\t\t// enter some text and post it\n\
+						\t\tstatusBox.sendKeys(\"Automation is fun!!\");\n\
+						\t\tpostButton.click();\n\
+						\t\tThread.sleep(5000);\n\n\
+						\t\t// close the driver instance\n\
+						\t\tdriver.close();\n\
+						\t}\n\
+						}"						
+				},
+
+			    images:{
+					tagImage:"/images/selenium-logo.png",
+		       		image1:"",
+					image2:""
+				}
+			},
+		comments:[],
+		references:[
+				{text:"http://docs.seleniumhq.org/docs/03_webdriver.jsp", refLink:"http://docs.seleniumhq.org/docs/03_webdriver.jsp"},
+				{text:"http://docs.seleniumhq.org/download/", refLink:"http://docs.seleniumhq.org/download/"},
+				{text:"http://www.eclipse.org/downloads/", refLink:"http://www.eclipse.org/downloads/"}
+			]
+	}
+);
